@@ -1,12 +1,36 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>First App</title>
 </head>
+
 <body>
-    <h1>Hello this is a test page!</h1>
-    {{ insert_content }}
+    <h1>Hi Welcome to Django Level Two!</h1>
+    <h2>Hear are your access records:</h2>
+    <div class="djangotwo">
+        {% if access_record %}
+        <table>
+            <thead>
+                <th>Site Name</th>
+                <th>Date Access</th>
+            </thead>
+
+            {% for acc in access_record %}
+            <tr>
+                <td>{{ acc.name }}</td>
+                <td>{{ acc.date }}</td>
+            </tr>
+            {% endfor %}
+
+        </table>
+        {% else %}
+        <p>NO ACCESS RECORDS FOUND!</p>
+
+        {% endif %}
+    </div>
 </body>
+
 </html>
