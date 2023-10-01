@@ -21,4 +21,6 @@ from blog.views import *
 urlpatterns = [
     path('', include('blog.urls')),
     path('admin/', admin.site.urls),
+    path('account/login/', login, name='login'),
+    path('account/logout/', logout, name='logout', kwargs={'next_page':'/'})
 ]
