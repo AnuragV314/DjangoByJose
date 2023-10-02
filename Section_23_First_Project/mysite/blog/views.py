@@ -1,7 +1,8 @@
 from django.db.models.query import QuerySet
-from django.shortcuts import render, get_list_or_404, redirect
+from django.shortcuts import render, get_object_or_404, redirect
 from django.utils import timezone
-from django.urls import reverse_lazy
+from django.urls import reverse_lazy, reverse
+from django.contrib.auth import login, logout
 
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.decorators import login_required
@@ -19,7 +20,7 @@ from django.views.generic import (
 # Create your views here.
 
 class AboutView(TemplateView):
-    template_name = 'about.html'
+    template_name = 'blog/about.html'
 
 
 class PostListView(ListView):
@@ -66,14 +67,14 @@ class DraftListView(LoginRequiredMixin, ListView):
 
 @login_required
 def post_publish(request, pk):
-    post = get_list_or_404(Post, pk=pk)
-    post.publish
-    return redirect('post_detail')
+    post = get_object_or_404(Post, pk=pk)
+    post.publish()
+    return redirect('post_detail', pk=pk)
 
 
 @login_required
 def add_comment_to_post(request, pk):
-    post = get_list_or_404(Post, pk=pk)
+    post = get_object_or_404(Post, pk=pk)
 
     if request.method == 'POST':
         form = CommentFrom(request.POST)
@@ -89,16 +90,16 @@ def add_comment_to_post(request, pk):
 
 @login_required
 def comment_approve(request, pk):
-    commnet = get_list_or_404(Comment, pk=pk)
-    commnet.approve()
-    return redirect('post_detail', pk=commnet.pk)
+    comment = get_object_or_404(Comment, pk=pk)
+    comment.approve()
+    return redirect('post_detail', pk=comment.post.pk)
 
 
 @login_required
 def comment_remove(request, pk):
-    commnet = get_list_or_404(Comment, pk=pk)
-    post_pk = commnet.post.pk
-    commnet.delete()
+    comment = get_object_or_404(Comment, pk=pk)
+    post_pk = comment.post.pk
+    comment.delete()
     return redirect('post_detail', pk=post_pk)
 
 

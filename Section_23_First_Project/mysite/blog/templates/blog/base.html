@@ -21,27 +21,29 @@
     <link href="https://fonts.googleapis.com/css2?family=Montserrat+Alternates:wght@300&family=Russo+One&display=swap"
         rel="stylesheet">
 
+    <script src="https://kit.fontawesome.com/5e7aeae22a.js" crossorigin="anonymous"></script>
 </head>
 
 <body class="loader">
-    <nav class="navbar navbar-expand-lg bg-body-tertiary techfont">
-        <div class="container">
-            <ul class="nav navbar-nav">
+    <nav class="navbar sticky-top navbar-expand-lg bg-body-tertiary techfont">
+        <div class="container container-fluid">
+            <ul class="navbar-nav">
                 <li><a class="navbar-brand bigbrand" href="{% url 'post_list' %}">Pen&Paper</a></li>
-                <li><a href="{% 'about' %}">About</a></li>
-                <li><a href="https://www.github.com">Github</a></li>
-                <li><a href="https://www.linkedin.com">LinkedIn</a></li>
+                <li><a class="nav-link" href="{% url 'about' %}">About</a></li>
+                <li><a class="nav-link" href="https://github.com/AnuragV314" target="_blank">Github</a></li>
+                <li><a class="nav-link" href="https://www.linkedin.com/in/anuragv314/" target="_blank">LinkedIn</a></li>
             </ul>
 
-            <ul class="nav navbar-nav navbar-right">
-                {% if user.is_authenticated %}
-                    <li><a href="{% url 'post_new' %}">New Post</a></li>
-                    <li><a href="{% url 'post_draft_list' %}">Drafts</a></li>
-                    <li><a href="{% url 'logout' %}">Logout</a></li>
-
-                    <a>Welcome: {{user.username}}</a>
+            <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                    {% if user.is_authenticated %}
+                    <li><a class="nav-link" href="{% url 'post_new' %}">New Post</a></li>
+                    <li><a class="nav-link" href="{% url 'post_draft_list' %}">Drafts</a></li>
+                    <li><a class="nav-link" href="{% url 'logout' %}">Logout</a></li>
+                    
+                    <!-- <a class="navbar-brand">Welcome : {{user.username}}</a> -->
+                    <span class="badge text-bg-primary usernamefont">{{user.username}}</span>
                 {% else %}
-                    <li><a nav navbar-right href="{% url 'login' %}"><span class="glyphyicon glyphyicon-user"></span></a></li>
+                    <li><a class="nav-link " href="{% url 'login' %}" aria-label="Login"><i class="fa fa-user"></i></a></li>
                 {% endif %}
             </ul>
         </div>

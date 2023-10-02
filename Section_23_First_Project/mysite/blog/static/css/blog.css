@@ -3,6 +3,14 @@
     font-size: 1.5em;
     margin-bottom: 10px;
 }
+.postheading{
+    font-family: 'Montserrat'
+}
+.usernamefont{
+    font-family: 'sans-serif';
+    margin-left: 20px;
+    padding: 20px;
+}
 
 .bigbrand{
     font-size: 1.5em;
@@ -13,12 +21,35 @@
     margin-right: auto;
 }
 
+.postdate{
+    text-align: center;
 
+}
 
+.posttitle{
+    font-family: 'Russo One', sans-serif;
+    font-size: 2.5em;
+    text-align: center;
+    margin-top: 30px;
+    margin-left: 70px;
+    margin-bottom: 50px;
+}
 
+.postcontent{
+    font-family: 'Montserrat 300';
+    font-size: 2em;
+}
 
+.btn-comment{
+    position: absolute;
+    right: 0px;
+}
 
+.addcommnent{
+    margin-right: 50px;
+}
 
+/* Color changer */
 
 .loader {
     filter: hue-rotate(0deg);
