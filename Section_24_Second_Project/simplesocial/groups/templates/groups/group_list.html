@@ -5,32 +5,32 @@
         {% if user.is_authenticated %}
         <h2>Welcome Back. <a href="{% url 'posts:for_user' username=user.username %}">@{{ user.username }}</a></h2>
         {% endif %}
-        <h2>Groups</h2>
-        <p>Welcome to the groups page.</p>
     </div>
     {% if user.is_authenticated %}
-    <a href="{% url 'groups:create' %}" class="btn btn-md btn-fill btn-warning"><i class="fa fa-plus">Create New
+    <a href="{% url 'groups:create' %}" class="btn btn-md btn-fill btn-warning"><i class="fa fa-plus-circle">Create New
             Group.</i></a>
     {% endif %}
 </div>
 {% endblock %}
 
 {% block group_content %}
-<div class="col-md-8">
+<div class="col-md-8 my-5">
     <div class="list-group">
+        <h2>Groups</h2>
+        <p>Welcome to the groups page.</p>
         {% for group in object_list %}
-        <a class="list-group-item" href="{% url 'group:single' slug=group.slug%}">
+        <a class="list-group-item" href="{% url 'groups:single' slug=group.slug%}">
             <h3 class="title list-group-item-heading">{{group.name}}</h3>
             <div class="list-group-item-text container-fluid">
                 {{group.description_html|safe}}
                 <div class="row">
                     <div class="col-md-4">
                         <span class="badge">{{ group.members.count }}</span>
-                        member{{ group.members.count|pluralize }}
+                        Members: {{ group.members.count }}
                     </div>
                     <div class="col-md-4">
                         <span class="badge">{{ group.posts.count }}</span>
-                        member{{ group.posts.count|pluralize }}
+                        Posts: {{ group.posts.count }}
                     </div>
                 </div>
             </div>

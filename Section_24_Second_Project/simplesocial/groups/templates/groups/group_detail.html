@@ -5,10 +5,10 @@
 <h2>Member Count: {{ group.members.count }}</h2>
 
 <div class="content">
-    {% if user in user.members.all %} 
+    {% if user in group.members.all %} 
         <a href="{% url 'groups:leave' slug=group.slug %}" class="btn btn-lg btn-warning"><i class="fa fa-user-xmark"></i>Leave</a>
     {% else %}
-    <a href="{% url 'groups:loin' slug=group.slug %}" class="btn btn-lg btn-warning"><i class="fa fa-user-plus"></i>Join</a>
+        <a href="{% url 'groups:join' slug=group.slug %}" class="btn btn-lg btn-warning"><i class="fa fa-user-plus"></i>Join</a>
     {% endif %}
 </div>
 {% endblock %}
